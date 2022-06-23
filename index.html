@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DICE</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            width: 80%;
+            height: 40vh;
+            border: 1px solid rgb(60, 58, 58);
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        #container>div {
+            width: 30%;
+            height: 80%;
+            /* border: 1px solid green; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #roll {
+            margin: 3em;
+            width: 30%;
+            height: 50px;
+            border: 1px solid gray;
+            font-size: larger;
+        }
+
+        #roll:hover {
+            margin: 3em;
+            width: 29%;
+            height: 45px;
+            border: 1px solid gray;
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="winner">
+        <h1></h1>
+    </div>
+    <div id="container">
+        <div id="Member1">
+            <h1>Member1</h1>
+        </div>
+        <div id="Member2">
+            <h1>Member2</h1>
+        </div>
+        <div id="Member3">
+            <h1>Member3</h1>
+        </div>
+    </div>
+
+    <button id="roll">ROLL THE DICE</button>
+
+</body>
+
+</html>
+<script>
+    let button = document.getElementById("roll").addEventListener("click", clickme);
+
+    function clickme() {
+        for (let i = 1; i <= 6; i++) {
+            let mem1 = document.querySelector("#Member1 h1");
+            let mem1ranNum = Math.floor(Math.random() * 6) + 1;
+            mem1.innerText = mem1ranNum;
+            let mem2 = document.querySelector("#Member2 h1");
+            let mem2ranNum = Math.floor(Math.random() * 6) + 1;
+            mem2.innerText = mem2ranNum;
+            let mem3 = document.querySelector("#Member3 h1");
+            let mem3ranNum = Math.floor(Math.random() * 6) + 1;
+            mem3.innerText = mem3ranNum;
+
+
+            if ((mem1ranNum > mem2ranNum) && (mem1ranNum > mem3ranNum)) {
+                document.getElementById("Member1").style.backgroundColor = "green";
+                document.querySelector("#winner h1").innerText = "Member1 is the winner"
+            }
+            else {
+                document.getElementById("Member1").style.backgroundColor = "white";
+
+
+            }
+            if ((mem2ranNum > mem1ranNum) && (mem2ranNum > mem3ranNum)) {
+                document.getElementById("Member2").style.backgroundColor = "green";
+                document.querySelector("#winner h1").innerText = "Member2 is the winner"
+
+            }
+            else {
+                document.getElementById("Member2").style.backgroundColor = "white";
+
+
+            }
+            if ((mem3ranNum > mem1ranNum) && (mem3ranNum > mem2ranNum)) {
+                document.getElementById("Member3").style.backgroundColor = "green";
+                document.querySelector("#winner h1").innerText = "Member3 is the winner"
+
+            }
+            else {
+                document.getElementById("Member3").style.backgroundColor = "white";
+
+
+            }
+            if ((mem1ranNum > mem2ranNum) && (mem3ranNum > mem1ranNum) || (mem1ranNum > mem3ranNum) && (mem2ranNum > mem1ranNum)) {
+                document.getElementById("Member1").style.backgroundColor = "yellow";
+
+            }
+            if ((mem2ranNum > mem3ranNum) && (mem1ranNum > mem2ranNum) || (mem2ranNum > mem1ranNum) && (mem3ranNum > mem2ranNum)) {
+                document.getElementById("Member2").style.backgroundColor = "yellow";
+
+            }
+            if ((mem3ranNum > mem1ranNum) && (mem2ranNum > mem3ranNum) || (mem3ranNum > mem2ranNum) && (mem1ranNum > mem3ranNum)) {
+                document.getElementById("Member3").style.backgroundColor = "yellow";
+
+            }
+            if ((mem1ranNum < mem2ranNum) && (mem3ranNum > mem1ranNum) || (mem1ranNum < mem3ranNum) && (mem2ranNum > mem1ranNum)) {
+                document.getElementById("Member1").style.backgroundColor = "red";
+
+            }
+            if ((mem2ranNum < mem3ranNum) && (mem1ranNum > mem2ranNum) || (mem2ranNum < mem1ranNum) && (mem3ranNum > mem2ranNum)) {
+                document.getElementById("Member2").style.backgroundColor = "red";
+
+            }
+            if ((mem3ranNum < mem1ranNum) && (mem2ranNum > mem3ranNum) || (mem3ranNum < mem2ranNum) && (mem1ranNum < mem3ranNum)) {
+                document.getElementById("Member3").style.backgroundColor = "red";
+
+            }
+            if ((mem1ranNum == mem2ranNum) && (mem2ranNum == mem3ranNum) && (mem3ranNum == mem1ranNum)) {
+                document.getElementById("Member1").style.backgroundColor = "blue";
+                document.getElementById("Member2").style.backgroundColor = "blue";
+                document.getElementById("Member3").style.backgroundColor = "blue";
+            }
+
+        }
+
+    }
+
+</script>
